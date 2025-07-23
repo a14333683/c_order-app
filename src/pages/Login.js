@@ -1,90 +1,186 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import JumpImage from "../components/JumpImg";
 
 export default function Login() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [form, setForm] = useState({
+    username: "",
+    password: "",
+  });
+  const [msg, setMsg] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // 目前僅示範 UI，暫不處理驗證或呼叫 API
-    console.log('登入按鈕點擊', { username, password });
+    setMsg("登入中...");
+    // 範例 API 請依實際修改
+    try {
+      const res = await fetch("http://localhost:5000/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (res.ok) {
+        setMsg("✅ 登入成功！");
+        // 你可以在這裡導向首頁或其他頁面
+      } else {
+        const err = await res.text();
+        setMsg("❌ 登入失敗：" + err);
+      }
+    } catch (err) {
+      setMsg("❌ 網路錯誤：" + err.message);
+    }
   };
 
   return (
-    <div style={styles.container} className='col-lg-9'>
-      <h2 style={styles.title}>使用者登入</h2>
-      <form onSubmit={handleSubmit} style={styles.form}>
-        <div style={styles.inputGroup}>
-          <label htmlFor="username" style={styles.label}>帳號</label>
-          <input
-            id="username"
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="請輸入帳號"
-            style={styles.input}
+    <div
+      style={{
+        minHeight: "100vh",
+        background: "linear-gradient(135deg, #f6d365 0%, #fda085 100%)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <div
+        style={{
+          background: "white",
+          borderRadius: 24,
+          boxShadow: "0 4px 24px rgba(0,0,0,0.08)",
+          padding: "36px 40px 32px 40px",
+          width: 350,
+          maxWidth: "90vw",
+        }}
+      >
+        <h2
+          style={{
+            fontWeight: 700,
+            fontSize: 28,
+            letterSpacing: 1,
+            marginBottom: 18,
+            color: "#ff9256",
+            textAlign: "center",
+          }}
+        >
+          <JumpImage />
+          使用者登入
+        </h2>
+        <form onSubmit={handleSubmit} autoComplete="off">
+          <FormInput
+            label="帳號"
+            name="username"
+            value={form.username}
+            onChange={handleChange}
+            required
           />
-        </div>
-        <div style={styles.inputGroup}>
-          <label htmlFor="password" style={styles.label}>密碼</label>
-          <input
-            id="password"
+          <FormInput
+            label="密碼"
+            name="password"
             type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="請輸入密碼"
-            style={styles.input}
+            value={form.password}
+            onChange={handleChange}
+            required
           />
-        </div>
-        <button type="submit" style={styles.button}>登入</button>
-      </form>
+          <button
+            type="submit"
+            style={{
+              marginTop: 16,
+              width: "100%",
+              padding: "12px 0",
+              background: "linear-gradient(90deg,#f6d365 0%,#ff9256 100%)",
+              color: "#fff",
+              border: "none",
+              borderRadius: 8,
+              fontSize: 18,
+              fontWeight: 700,
+              letterSpacing: 1,
+              cursor: "pointer",
+              boxShadow: "0 2px 8px rgba(255,146,86,0.16)",
+              transition: "transform 0.08s",
+            }}
+            onMouseDown={(e) =>
+              (e.currentTarget.style.transform = "scale(0.97)")
+            }
+            onMouseUp={(e) =>
+              (e.currentTarget.style.transform = "scale(1)")
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.transform = "scale(1)")
+            }
+          >
+            登入
+          </button>
+        </form>
+        {msg && (
+          <div
+            style={{
+              marginTop: 24,
+              color: msg.startsWith("✅") ? "#20c997" : "#ff6256",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: 16,
+              minHeight: 22,
+            }}
+          >
+            {msg}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
 
-const styles = {
-  container: {
-    maxWidth: '320px',
-    margin: '-450px 150px auto auto',
-    padding: '20px',
-    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-    borderRadius: '8px',
-    fontFamily: 'Arial, sans-serif',
-    backgroundColor: '#ffffff',
-  },
-  title: {
-    textAlign: 'center',
-    marginBottom: '20px',
-    color: '#333333',
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  inputGroup: {
-    marginBottom: '15px',
-  },
-  label: {
-    marginBottom: '5px',
-    fontSize: '14px',
-    color: '#555555',
-    display: 'block',
-  },
-  input: {
-    width: '100%',
-    padding: '10px',
-    fontSize: '14px',
-    borderRadius: '4px',
-    border: '1px solid #cccccc',
-    boxSizing: 'border-box',
-  },
-  button: {
-    padding: '10px',
-    fontSize: '20px',
-    borderRadius: '4px',
-    border: 'none',
-    cursor: 'pointer',
-    backgroundColor: '#7fad39',
-    color: '#ffffff',
-  },
-};
+function FormInput({
+  label,
+  name,
+  value,
+  onChange,
+  required,
+  type = "text",
+}) {
+  return (
+    <div style={{ marginBottom: 16 }}>
+      <label
+        htmlFor={name}
+        style={{
+          display: "block",
+          marginBottom: 6,
+          fontSize: 16,
+          fontWeight: 500,
+          color: "#333",
+          letterSpacing: 0.5,
+        }}
+      >
+        {label}
+        {required && <span style={{ color: "#ff9256" }}> *</span>}
+      </label>
+      <input
+        id={name}
+        name={name}
+        value={value}
+        type={type}
+        onChange={onChange}
+        required={required}
+        style={{
+          width: "100%",
+          padding: "11px 12px",
+          fontSize: 16,
+          border: "1.5px solid #e0e0e0",
+          borderRadius: 8,
+          outline: "none",
+          background: "#faf9f8",
+          transition: "border 0.2s",
+        }}
+        onFocus={(e) =>
+          (e.target.style.border = "1.5px solid #ff9256")
+        }
+        onBlur={(e) =>
+          (e.target.style.border = "1.5px solid #e0e0e0")
+        }
+        autoComplete="off"
+      />
+    </div>
+  );
+}

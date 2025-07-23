@@ -420,13 +420,13 @@ ol {
 	padding: 24px 0;
  	white-space: nowrap;
 }
-.merchant_login{
+/* .merchant_login{
 	left: 150px;
 }
-
+ 
 .admin_login{
 	left: 120px;
-}
+} */
 
 .header__menu ul li {
 	list-style: none;

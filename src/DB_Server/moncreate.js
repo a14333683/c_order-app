@@ -7,7 +7,7 @@ const client = new MongoClient("mongodb+srv://s1010606:wWJLH1Nlt7HdLh9y@cluster0
   await client.connect();
   const database  = client.db("Breakfast_Shop");
   const Person = database.collection("menu_items");
-  await Person.insertOne({ _id: 122,menu_items_id:122, name:'測試1',description:'',price:'50',is_available:true,menu_photo:'',menu_categories_id:'9',location_id:'1'});
+  await Person.insertOne({ id: 111111111,account:'a14333683', password:'123123',name:'SW',email :'test@gmail.com',phone:'0912345678',created_at:'DATETIME',line_id:'sw14333683',google_account:'14333683'});
 
   await client.close(); // 關閉連線
 })()
