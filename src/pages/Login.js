@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import JumpImage from "../components/JumpImg";
+import JumpImage from "../utils/JumpImg";
 
 export default function Login() {
   const [form, setForm] = useState({
@@ -64,7 +64,7 @@ export default function Login() {
             textAlign: "center",
           }}
         >
-          <JumpImage />
+          <Link to="/"><JumpImage /></Link>
           使用者登入
         </h2>
         <form onSubmit={handleSubmit} autoComplete="off">

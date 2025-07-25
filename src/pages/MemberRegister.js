@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import JumpImage from "../components/JumpImg";
+import { Link } from "react-router-dom";
+import JumpImage from "../utils/JumpImg";
 
 export default function UserRegister() {
   const [form, setForm] = useState({
@@ -9,6 +10,7 @@ export default function UserRegister() {
     email: "",
     phone: "",
     lineId: "",
+    userType: "customer",
   });
   const [msg, setMsg] = useState("");
 
@@ -34,6 +36,7 @@ export default function UserRegister() {
           email: "",
           phone: "",
           lineId: "",
+          userType: "",
         });
       } else {
         const err = await res.text();
@@ -59,23 +62,23 @@ export default function UserRegister() {
         style={{
           background: "white",
           borderRadius: 24,
-          boxShadow: "0 4px 24px rgba(0,0,0,0.08)",
-          padding: "36px 40px 32px 40px",
+          boxShadow: "0 4px 24px rgba(0,0,0,1)",
+          padding: "0px 60px 20px 60px",
           width: 380,
           maxWidth: "90vw",
         }}
-      ><j1><JumpImage /></j1>
+      ><Link to="/"><JumpImage /></Link>
         <h2
           style={{
             fontWeight: 700,
             fontSize: 28,
             letterSpacing: 1,
-            marginBottom: 18,
+            marginBottom: 10,
             color: "#ff9256",
             textAlign: "center",
           }}
         >
-          使用者註冊
+          使用者/商家註冊
         </h2>
         <form onSubmit={handleSubmit} autoComplete="off">
           <FormInput
@@ -120,6 +123,16 @@ export default function UserRegister() {
             value={form.lineId}
             onChange={handleChange}
           />
+          <RadioInputGroup
+            label="註冊身份"
+            name="userType"
+            options={[
+              { label: "一般人", value: "customer" },
+              { label: "商家", value: "store" },
+            ]}
+            value={form.userType}
+            onChange={handleChange}
+          />
           <button
             type="submit"
             style={{
@@ -138,9 +151,18 @@ export default function UserRegister() {
               boxShadow: "0 2px 8px rgba(255,146,86,0.16)",
               transition: "transform 0.08s",
             }}
-            onMouseDown={e => (e.currentTarget.style.transform = "scale(0.97)")}
-            onMouseUp={e => (e.currentTarget.style.transform = "scale(1)")}
-            onMouseLeave={e => (e.currentTarget.style.transform = "scale(1)")}
+            onMouseDown={(e) =>
+              (e.currentTarget.style.transform = "scale(0.8)")
+            }
+            onMouseUp={(e) =>
+              (e.currentTarget.style.transform = "scale(1)")
+            }
+            onMouseOver={(e)=>
+              (e.currentTarget.style.transform = "scale(1.1)")
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.transform = "scale(1)")
+            }
           >
             註冊
           </button>
@@ -164,6 +186,7 @@ export default function UserRegister() {
   );
 }
 
+
 // 表單欄位元件 (更整齊美觀)
 function FormInput({
   label,
@@ -174,14 +197,14 @@ function FormInput({
   type = "text",
 }) {
   return (
-    <div style={{ marginBottom: 16 }}>
+    <div style={{ marginBottom: 5 }}>
       <label
         htmlFor={name}
         style={{
           display: "block",
-          marginBottom: 6,
-          fontSize: 16,
-          fontWeight: 500,
+          marginBottom: 2,
+          fontSize: 14,
+          fontWeight: 600,
           color: "#333",
           letterSpacing: 0.5,
         }}
@@ -209,6 +232,46 @@ function FormInput({
         onBlur={e => (e.target.style.border = "1.5px solid #e0e0e0")}
         autoComplete="off"
       />
+    </div>
+  );
+}
+
+function RadioInputGroup({ label, name, options, value, onChange }) {
+  return (
+    <div style={{ marginBottom: 16 }}>
+      <div
+        style={{
+          marginBottom: 6,
+          fontSize: 16,
+          fontWeight: 500,
+          color: "#333",
+          letterSpacing: 0.5,
+        }}
+      >
+        {label} <span style={{ color: "#ff9256" }}> *</span>
+      </div>
+      {options.map((opt) => (
+        <label
+          key={opt.value}
+          style={{
+            marginRight: 16,
+            fontSize: 15,
+            display: "inline-flex",
+            alignItems: "center",
+            cursor: "pointer",
+          }}
+        >
+          <input
+            type="radio"
+            name={name}
+            value={opt.value}
+            checked={value === opt.value}
+            onChange={onChange}
+            style={{ marginRight: 6 }}
+          />
+          {opt.label}
+        </label>
+      ))}
     </div>
   );
 }

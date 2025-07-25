@@ -1,7 +1,6 @@
 import React from 'react';
-import JpImg from '../components/JumpImg'
-// import languageIcon from '../assets/img/language.png';
-import '../assets/css/style.css'
+import JpImg from '../utils/JumpImg'
+import '../styles/style.css'
 import {Routes, Route, Link} from 'react-router-dom'
 
 
@@ -39,9 +38,7 @@ const Header = () => {
         <div className="row">
           <div className="col-lg-3">
             <div className="header__logo">
-              <a href="./index.html">
-              <JpImg />
-              </a>
+            <Link to="/"><JpImg /></Link>
             </div>
           </div>
           <div className="col-lg-6">
