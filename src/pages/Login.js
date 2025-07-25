@@ -83,6 +83,8 @@ export default function Login() {
             onChange={handleChange}
             required
           />
+          
+          <Link to='/MC'>
           <button
             type="submit"
             name="action"
@@ -117,6 +119,7 @@ export default function Login() {
           >
             登入
           </button>
+          </Link>
           <Link to="/Register">
           <button
             type="submit"
