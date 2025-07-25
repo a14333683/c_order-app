@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 export default function JumpImage() {
   return (
     <motion.img
-      width="2500px"
+      width="600px"
       src={logo}
       alt="跳進圖片"
       initial={{ y: 100, scale: 5, opacity: 0 }}

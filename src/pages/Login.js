@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import JumpImage from "../components/JumpImg";
 
 export default function Login() {
@@ -15,7 +16,6 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMsg("登入中...");
-    // 範例 API 請依實際修改
     try {
       const res = await fetch("http://localhost:5000/api/login", {
         method: "POST",
@@ -32,7 +32,7 @@ export default function Login() {
     } catch (err) {
       setMsg("❌ 網路錯誤：" + err.message);
     }
-  };
+};
 
   return (
     <div
@@ -85,6 +85,8 @@ export default function Login() {
           />
           <button
             type="submit"
+            name="action"
+            value={"login"}
             style={{
               marginTop: 16,
               width: "100%",
@@ -101,10 +103,13 @@ export default function Login() {
               transition: "transform 0.08s",
             }}
             onMouseDown={(e) =>
-              (e.currentTarget.style.transform = "scale(0.97)")
+              (e.currentTarget.style.transform = "scale(0.8)")
             }
             onMouseUp={(e) =>
               (e.currentTarget.style.transform = "scale(1)")
+            }
+            onMouseOver={(e)=>
+              (e.currentTarget.style.transform = "scale(1.1)")
             }
             onMouseLeave={(e) =>
               (e.currentTarget.style.transform = "scale(1)")
@@ -112,6 +117,43 @@ export default function Login() {
           >
             登入
           </button>
+          <Link to="/Register">
+          <button
+            type="submit"
+            name="action"
+            value={"register"}
+            style={{
+              marginTop: 16,
+              width: "100%",
+              padding: "12px 0",
+              background: "linear-gradient(90deg,#f6d365 0%,#ff9256 100%)",
+              color: "#fff",
+              border: "none",
+              borderRadius: 8,
+              fontSize: 18,
+              fontWeight: 700,
+              letterSpacing: 1,
+              cursor: "pointer",
+              boxShadow: "0 2px 8px rgba(255,146,86,0.16)",
+              transition: "transform 0.08s",
+              value:"reg",
+            }}
+            onMouseDown={(e) =>
+              (e.currentTarget.style.transform = "scale(0.8)")
+            }
+            onMouseUp={(e) =>
+              (e.currentTarget.style.transform = "scale(1)")
+            }
+            onMouseOver={(e)=>
+              (e.currentTarget.style.transform = "scale(1.1)")
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.transform = "scale(1)")
+            }
+          >
+            註冊
+            </button>
+          </Link>
         </form>
         {msg && (
           <div

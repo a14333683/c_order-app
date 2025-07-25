@@ -1,6 +1,6 @@
 import './App.css';
 import Login from './pages/Login'
-import UserRegister from './pages/UserRegister';
+import MemberRegister from './pages/MemberRegister';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -14,7 +14,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Header />} />
         <Route path="/Login" element={<Login />} />
-        <Route path="/Register" element={<UserRegister />} />
+        <Route path="/Register" element={<MemberRegister />} />
       </Routes>
     </BrowserRouter>
   );

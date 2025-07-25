@@ -40,7 +40,7 @@ const Header = () => {
           <div className="col-lg-3">
             <div className="header__logo">
               <a href="./index.html">
-                <JpImg />
+              <JpImg />
               </a>
             </div>
           </div>
@@ -49,11 +49,7 @@ const Header = () => {
               <ul>
                 <li className="active"><Link to='/'>首頁</Link></li>
                 <li><Link to='/restaurant'>餐廳</Link></li>
-                <li><Link to='/login'>登入</Link></li>
-                <li><Link to='/register'>註冊</Link></li>
-                <li><a href="./contact.html">登出</a></li>
-                <li className='merchant_login'><button link="http://www.google.com"> 商家登入 </button></li>
-                <li className='admin_login'><button href="http://www.google.com"> 管理者登入 </button></li>
+                <li><Link to='/login'>登入/註冊</Link></li>
               </ul>
             </nav>
             
@@ -77,7 +73,7 @@ const Header = () => {
         <div className="row">
 
           {/* Categories Menu */}
-          <div className="col-lg-3">
+          {/* <div className="col-lg-3">
             <div className="hero__categories">
               <div className="hero__categories__all">
                 <i className="fa fa-bars"></i>
@@ -93,15 +89,15 @@ const Header = () => {
                 <li><a href="#">聯絡我們</a></li>
               </ul>
             </div>
-          </div>
+          </div> */}
 
           {/* Search & Banner */}
           <div className="col-lg-9">
             <div className="hero__search">
               <div className="hero__search__form">
                 <form action="#">
-                  <div className="hero__search__categories">
-                    All Categories
+                  <div className="hero__search__categories" >
+                    餐廳快找
                     <span className="arrow_carrot-down"></span>
                   </div>
                   <input type="text" placeholder="What do you need?" />
