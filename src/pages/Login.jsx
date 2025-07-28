@@ -83,7 +83,6 @@ export default function Login() {
             onChange={handleChange}
             required
           />
-          
           <Link to='/MC'>
           <button
             type="submit"

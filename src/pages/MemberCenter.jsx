@@ -1,7 +1,7 @@
 import React from 'react';
 import JpImg from '../utils/JumpImg'
-import '../styles/style.css'
-import {Routes, Route, Link} from 'react-router-dom'
+import '../styles/css/style.css'
+import {Link,Outlet} from 'react-router-dom'
 
 
 const Header = () => {
@@ -75,14 +75,14 @@ const Header = () => {
             <div className="hero__categories">
               <div className="hero__categories__all">
                 <i className="fa fa-bars"></i>
-                <span>All departments</span>
+                <span>會員中心</span>
               </div>
               <ul>
-                <li><a href="#">會員中心</a></li>
-                <li><a href="#">訂餐專區</a></li>
+                {/* <li><a href="#">會員中心</a></li> */}
+                <li><Link to='/MC/MenuPage'>訂餐專區</Link></li>
                 <li><a href="#">支付管理</a></li>
                 <li><a href="#">優惠專區</a></li>
-                <li><a href="#">評價與收藏</a></li>
+                {/* <li><a href="#">評價與收藏</a></li> */}
                 <li><a href="#">客戶服務</a></li>
                 <li><a href="#">聯絡我們</a></li>
               </ul>
@@ -111,6 +111,10 @@ const Header = () => {
                   <span>support 8hr/5 time</span>
                 </div>
               </div>
+              
+            </div>
+            <div className="hero__content">
+              <Outlet />
             </div>
           </div>
         </div>

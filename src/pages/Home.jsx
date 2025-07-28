@@ -1,10 +1,10 @@
 import React from 'react';
 import JpImg from '../utils/JumpImg'
-import '../styles/style.css'
-import {Routes, Route, Link} from 'react-router-dom'
+import '../styles/css/style.css'
+import {Link} from 'react-router-dom'
 
 
-const Header = () => {
+const Home = () => {
   return (
     <header className="header">
       <div className="header__top">
@@ -112,7 +112,7 @@ const Header = () => {
               </div>
             </div>
 
-            {/* Hero Banner */}
+            {/* Hero Banner
             <div
               className="hero__item"
               style={{
@@ -126,9 +126,9 @@ const Header = () => {
                 <h2>Vegetable <br />100% Organic</h2>
                 <p>Free Pickup and Delivery Available</p>
                 <a href="#" className="primary-btn">SHOP NOW</a> 
-              </div>
+              </div> */}
               
-            </div>
+            {/* </div> */}
           </div>
         </div>
       </div>
@@ -138,4 +138,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Home;

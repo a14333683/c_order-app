@@ -746,6 +746,12 @@ ol {
 	padding-left: 75px;
 }
 
+.hero_content {
+	max-width: 300px;
+    width: 50%;
+    margin: 0 auto;
+}
+
 .hero__text span {
 	font-size: 14px;
 	text-transform: uppercase;
