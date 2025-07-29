@@ -52,7 +52,7 @@ const Header = () => {
             </nav>
             
           </div>
-          <div className="col-lg-3">
+          {/* <div className="col-lg-3">
             <div className="header__cart">
               <ul>
                 <li><a href="#"><i className="fa fa-heart"></i> <span>100</span></a></li>
@@ -60,7 +60,7 @@ const Header = () => {
               </ul>
               <div className="header__cart__price">item: <span>$150.00</span></div>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="humberger__open">
           <i className="fa fa-bars"></i>

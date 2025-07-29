@@ -11,8 +11,9 @@
     "bootstrap": "^5.3.7",
     "font-awesome": "^4.7.0",
     "font-smoothing": "^1.0.1",
+    "mongobd": "0.0.1-security.0",
     "mongodb": "^6.17.0",
-    "mongoose": "^8.16.4",
+    "mongoose": "^8.16.5",
     "motion": "^12.23.6",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
@@ -47,6 +48,8 @@
     ]
   },
   "bundleDependencies": [
-    "font-smoothing"
+    "font-smoothing",
+    "mongobd",
+    "mongoose"
   ]
 }
